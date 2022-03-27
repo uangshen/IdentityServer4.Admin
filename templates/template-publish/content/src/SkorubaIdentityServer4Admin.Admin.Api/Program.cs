@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using SkorubaIdentityServer4Admin.Shared.Helpers;
+using Skoruba.IdentityServer4.Shared.Configuration.Helpers;
 
 namespace SkorubaIdentityServer4Admin.Admin.Api
 {
@@ -47,7 +47,7 @@ namespace SkorubaIdentityServer4Admin.Admin.Api
 
             if (isDevelopment)
             {
-                configurationBuilder.AddUserSecrets<Startup>();
+                configurationBuilder.AddUserSecrets<Startup>(true);
             }
 
             var configuration = configurationBuilder.Build();
@@ -74,7 +74,7 @@ namespace SkorubaIdentityServer4Admin.Admin.Api
 
                      if (env.IsDevelopment())
                      {
-                         configApp.AddUserSecrets<Startup>();
+                         configApp.AddUserSecrets<Startup>(true);
                      }
 
                      configurationRoot.AddAzureKeyVaultConfiguration(configApp);
@@ -95,6 +95,8 @@ namespace SkorubaIdentityServer4Admin.Admin.Api
                 });
     }
 }
+
+
 
 
 
